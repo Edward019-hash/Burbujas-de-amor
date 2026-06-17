@@ -1,295 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Edward-Night ✨ Burbujas de Amor</title>
+<title>Edward-Night ✨ Botón corazón especial</title>
 <style>
-:root{
-  --bg1:#0a0f1e; --bg2:#1e1b4b;
-}
-*{box-sizing:border-box;}
-html,body{height:100%;margin:0;}
-body{
-  font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial;
-  background: radial-gradient(1200px 700px at 20% 20%, #1e1b4b 0%, transparent 50%) ,
-              radial-gradient(1200px 700px at 80% 80%, #0f172a 0%, transparent 50%),
-              linear-gradient(135deg,#0a0f1e,#1e1b4b 60%, #0f172a 100%);
-  overflow:hidden;
-  color:#e0f2fe;
-}
+  /* Animación de fondo degradado (azules y morados) */
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
-/* Cañón aún más grande y sin borde */
-.cannon {
-  position: fixed;
-  left: 10px;
-  bottom: 10px;
-  width: 180px;
-  height: 180px;
-  transform-origin: center center;
-  animation: cannonPulse 1s infinite alternate;
-  z-index: 5;
-}
-.cannon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 0 10px #3b82f6);
-}
-@keyframes cannonPulse{
-  0%{ transform: scale(1) rotate(-20deg);}
-  50%{ transform: scale(1.05) rotate(-25deg);}
-  100%{ transform: scale(1) rotate(-20deg);}
-}
+  body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #e0f2fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 
-.bubble-container{
-  position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:1;
-}
-.bubble{
-  position:absolute; border-radius:50%; overflow:hidden; pointer-events:auto;
-  box-shadow: 0 4px 24px #0006, 0 0 0 2px #60a5fa80, 0 0 40px 10px #3b82f640;
-  transition: box-shadow 0.2s, opacity 0.3s;
-  will-change: transform, opacity;
-  opacity:1;
-  background: radial-gradient(circle at 30% 30%, #fff8 0 30%, transparent 31%),
-              radial-gradient(circle at 70% 70%, #fff3 0 40%, transparent 41%),
-              var(--bubble-color, #3b82f6);
-  cursor:pointer;
-}
-.bubble__inner{
-  width:100%; height:100%; border-radius:50%;
-  background: radial-gradient(circle at 60% 40%, #fff6 0 20%, transparent 21%),
-              radial-gradient(circle at 30% 70%, #fff2 0 30%, transparent 31%);
-  opacity:0.7;
-  animation: bubblePulse 6s infinite alternate;
-}
-@keyframes bubblePulse{
-  0% { filter: brightness(1) blur(0px);}
-  100% { filter: brightness(1.15) blur(2px);}
-}
-.bubble.exploding{
-  animation: bubbleExplode 0.5s forwards; pointer-events:none;
-}
-@keyframes bubbleExplode{
-  0%{opacity:1; transform: scale(1);}
-  60%{opacity:1; transform: scale(1.2);}
-  100%{opacity:0; transform: scale(0.7);}
-}
-.bubble-particle{
-  position:absolute; border-radius:50%; pointer-events:none; opacity:0.8; z-index:2;
-  animation: particleAnim 0.7s forwards;
-  background: radial-gradient(circle at 40% 40%, #fff8 0 60%, transparent 61%), var(--color);
-  box-shadow: 0 2px 8px #60a5fa;
-}
-@keyframes particleAnim{
-  0%{opacity:0.8; transform: scale(1) translate(0,0);}
-  80%{opacity:0.7;}
-  100%{opacity:0; transform: scale(0.7) translate(var(--tx), var(--ty));}
-}
-.hint{
-  position:fixed; left:50%; bottom:22px; transform:translateX(-50%);
-  font-size:14px; opacity:.75; letter-spacing:.3px;
-  background:#3b82f620; padding:.5rem .75rem; border-radius:999px;
-  backdrop-filter: blur(6px);
-  z-index:10;
-  color: #a5f3fc;
-}
-.love-message{
-  position:absolute; left:0; top:0;
-  transform: translate(-50%,-50%);
-  font-size:1.5rem;
-  font-weight:bold;
-  color:#e0f2fe;
-  text-shadow:0 2px 12px #3b82f6;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  padding: 0.7em 1.5em;
-  border-radius: 1.5em;
-  opacity:0;
-  pointer-events:none;
-  z-index:20;
-  animation: msgPop 1.3s cubic-bezier(.7,-0.2,.3,1.5) forwards;
-  box-shadow: 0 0 20px rgba(59,130,246,0.5);
-}
-@keyframes msgPop{
-  0%{opacity:0; transform:translate(-50%,-50%) scale(0.7);}
-  15%{opacity:1; transform:translate(-50%,-70%) scale(1.12);}
-  40%{opacity:1; transform:translate(-50%,-90%) scale(1);}
-  80%{opacity:1; transform:translate(-50%,-110%) scale(1);}
-  100%{opacity:0; transform:translate(-50%,-160%) scale(0.8);}
-}
+    /* Fondo degradado animado en tonos azules y morados */
+    background: linear-gradient(270deg, #0f172a, #1e1b4b, #3b82f6, #8b5cf6, #1e1b4b, #0f172a);
+    background-size: 800% 800%;
+    animation: gradientAnimation 20s ease infinite;
+  }
 
-/* CRÉDITO EDWARD-NIGHT */
-.credit {
-  position: fixed;
-  bottom: 15px;
-  right: 18px;
-  font-size: 11px;
-  background: rgba(0,0,0,0.5);
-  padding: 5px 12px;
-  border-radius: 30px;
-  backdrop-filter: blur(5px);
-  color: #94a3b8;
-  z-index: 200;
-  font-family: monospace;
-  letter-spacing: 0.8px;
-}
-.credit span {
-  color: #60a5fa;
-  font-weight: bold;
-}
+  #loveBtn {
+    position: relative;
+    z-index: 10;
+    font-size: 4rem;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border: none;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
+  #loveBtn:hover {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(96, 165, 250, 0.6);
+  }
+  .phrase {
+    position: absolute;
+    z-index: 20;
+    color: #fff;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-weight: bold;
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.8);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-family: 'Segoe UI', 'Poppins', sans-serif;
+    opacity: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+  }
+
+  /* CRÉDITO EDWARD-NIGHT */
+  .credit {
+    position: fixed;
+    bottom: 15px;
+    right: 18px;
+    font-size: 11px;
+    background: rgba(0,0,0,0.5);
+    padding: 5px 12px;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    color: #94a3b8;
+    z-index: 200;
+    font-family: monospace;
+    letter-spacing: 0.8px;
+  }
+  .credit span {
+    color: #60a5fa;
+    font-weight: bold;
+  }
+
+  @media (max-width: 600px) {
+    .phrase {
+      font-size: 12px;
+      white-space: normal;
+      text-align: center;
+      max-width: 200px;
+    }
+  }
 </style>
 </head>
 <body>
-<div class="cannon">
-  <img src="https://github.com/Baque2005/public-files/blob/main/2025/canon.png?raw=true" alt="Cañón">
-</div>
-<div class="bubble-container" id="bubbleContainer"></div>
-<div class="hint">💙 Haz clic en una burbuja para explotar amor 💙</div>
+
+<button id="loveBtn" aria-label="Botón corazón">💙</button>
 
 <!-- CRÉDITO -->
 <div class="credit">Hecho por <span>Edward-Night</span> ✨</div>
 
 <script>
-const LOVE_MESSAGES = [
-  "💙 Contigo, todo es mejor 💙",
-  "💜 Eres mi lugar favorito 💜",
-  "✨ Te elijo hoy y siempre ✨",
-  "💙 Tu sonrisa es mi sol 💙",
-  "💜 Mi casa es donde estés tú 💜",
-  "✨ Me encantas, tal como eres ✨",
-  "💙 Gracias por existir 💙",
-  "💜 Te amo infinito 💜",
-  "✨ Eres mi casualidad favorita ✨",
-  "💙 Qué suerte tenerte 💙",
-  "💜 Eres mi sueño hecho realidad 💜",
-  "✨ Cada día te quiero más ✨"
-];
-const COLORS = ['#3b82f6','#8b5cf6','#60a5fa','#a855f7','#4f46e5','#c084fc'];
-let bubbles = [];
-const container = document.getElementById('bubbleContainer');
+  const phrasesOriginal = [
+    "💙 Eres hermosa sin esfuerzo. 💙",
+    "💜 Tienes una mirada que destaca. 💜",
+    "✨ Tu sonrisa tiene algo especial. ✨",
+    "💙 Inteligente y segura, así eres. 💙",
+    "💜 Bonita por dentro y por fuera. 💜",
+    "✨ Me encanta tu forma de pensar. ✨",
+    "💙 Tienes estilo y mucha personalidad. 💙",
+    "💜 Eres fuerte, pero también muy dulce. 💜",
+    "✨ Brillas sin hacer ruido. ✨",
+    "💙 Tu vibra es de las que se quedan. 💙",
+    "💜 Eres real, y eso vale mucho. 💜",
+    "✨ Encantas sin intentarlo. ✨",
+    "💙 Naturalmente linda. 💙",
+    "💜 Siempre de buen gusto. 💜",
+    "✨ Sabes estar sin querer llamar la atención. ✨",
+    "💙 Eres increíble. 💙",
+    "💜 Eres mi persona favorita. 💜"
+  ];
 
-function rand(min,max){return Math.random()*(max-min)+min;}
-const cannonX = 90;
-const cannonY = window.innerHeight - 90;
+  let phrases = [...phrasesOriginal];
 
-function createBubble(){
-  const size = rand(180,240);
-  const el = document.createElement('div');
-  el.className = 'bubble';
-  el.style.width = el.style.height = size+'px';
-  el.style.setProperty('--bubble-color', COLORS[Math.floor(Math.random()*COLORS.length)]);
-  el.style.transform = `translate3d(${cannonX}px,${cannonY}px,0)`; 
-  const inner = document.createElement('div');
-  inner.className='bubble__inner';
-  el.appendChild(inner);
-  container.appendChild(el);
+  const loveBtn = document.getElementById('loveBtn');
 
-  const angle = rand(-Math.PI/4, -Math.PI/2);
-  const speed = rand(0.5,1); 
-  const b = {
-    el, size, x:cannonX, y:cannonY,
-    vx: Math.cos(angle)*speed, vy: Math.sin(angle)*speed
-  };
-  bubbles.push(b);
+  const directions = [
+    { x: 0, y: -120 },
+    { x: -80, y: -100 },
+    { x: 80, y: -100 },
+    { x: -120, y: 0 },
+    { x: 120, y: 0 },
+    { x: -80, y: -40 },
+    { x: 80, y: -40 },
+    { x: 0, y: -150 }
+  ];
 
-  el.addEventListener('click', (ev)=>explodeBubble(b, ev));
-  el.addEventListener('touchstart', (ev)=>{ ev.preventDefault(); explodeBubble(b, ev); }, {passive:false});
-}
-
-function explodeBubble(b, ev){
-  if(!b || b.el.classList.contains('exploding')) return;
-  b.el.classList.add('exploding');
-
-  let cx, cy;
-  if(ev && ev.touches && ev.touches[0]){
-    cx = ev.touches[0].clientX; 
-    cy = ev.touches[0].clientY;
-  } else if(ev && typeof ev.clientX === 'number'){
-    cx = ev.clientX; 
-    cy = ev.clientY;
-  } else {
-    const rect = b.el.getBoundingClientRect();
-    cx = rect.left + rect.width/2;
-    cy = rect.top + rect.height/2;
-  }
-
-  for(let i=0;i<20;i++){
-    const p = document.createElement('span');
-    p.className='bubble-particle';
-    const size=rand(16,24); 
-    p.style.width=p.style.height=size+'px';
-    p.style.position = 'fixed';
-    p.style.left = (cx-size/2)+'px'; 
-    p.style.top = (cy-size/2)+'px';
-    p.style.setProperty('--color', b.el.style.getPropertyValue('--bubble-color'));
-    const ang = (Math.PI*2)*(i/20)+rand(-.2,.2);
-    const dist = rand(80,160);
-    p.style.setProperty('--tx', Math.cos(ang)*dist+'px');
-    p.style.setProperty('--ty', Math.sin(ang)*dist+'px');
-    document.body.appendChild(p);
-    p.addEventListener('animationend', ()=>p.remove());
-  }
-
-  const msg = document.createElement('div');
-  msg.className='love-message';
-  msg.style.position = 'fixed';
-  msg.textContent = LOVE_MESSAGES[Math.floor(Math.random()*LOVE_MESSAGES.length)];
-  msg.style.left = cx+'px'; 
-  msg.style.top = cy+'px';
-  document.body.appendChild(msg);
-  msg.addEventListener('animationend', ()=> msg.remove());
-
-  setTimeout(()=>{ 
-    if(b.el.parentNode) b.el.parentNode.removeChild(b.el);
-    bubbles = bubbles.filter(x=>x!==b);
-    createBubble();
-  },500);
-}
-
-function tick(){
-  for(let i=0; i<bubbles.length; i++){
-    const a = bubbles[i];
-    if(!a) continue;
-    a.x += a.vx*3; a.y += a.vy*3;
-    if(a.x<=0){a.x=0;a.vx=Math.abs(a.vx);}
-    if(a.y<=0){a.y=0;a.vy=Math.abs(a.vy);}
-    if(a.x+a.size>=window.innerWidth){a.x=window.innerWidth-a.size;a.vx=-Math.abs(a.vx);}
-    if(a.y+a.size>=window.innerHeight){a.y=window.innerHeight-a.size;a.vy=-Math.abs(a.vy);}
-    a.el.style.transform=`translate3d(${a.x}px,${a.y}px,0)`;
-    for(let j=i+1; j<bubbles.length; j++){
-      const b = bubbles[j];
-      if(!b) continue;
-      const dx = b.x + b.size/2 - (a.x + a.size/2);
-      const dy = b.y + b.size/2 - (a.y + a.size/2);
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      const minDist = (a.size + b.size)/2;
-      if(dist < minDist && dist > 0){
-        const overlap = minDist - dist;
-        const nx = dx/dist;
-        const ny = dy/dist;
-        a.x -= nx * overlap/2;
-        a.y -= ny * overlap/2;
-        b.x += nx * overlap/2;
-        b.y += ny * overlap/2;
-        const va = {x: a.vx, y: a.vy};
-        a.vx = b.vx;
-        a.vy = b.vy;
-        b.vx = va.x;
-        b.vy = va.y;
-      }
+  loveBtn.addEventListener('click', () => {
+    if (phrases.length === 0) {
+      phrases = [...phrasesOriginal];
     }
-  }
-  requestAnimationFrame(tick);
-}
 
-for(let i=0;i<9;i++) createBubble();
-requestAnimationFrame(tick);
+    const index = Math.floor(Math.random() * phrases.length);
+    const phraseText = phrases.splice(index, 1)[0];
 
-window.addEventListener('resize', ()=>{
-  bubbles.forEach(b => { if(b.el.parentNode) b.el.parentNode.removeChild(b.el); });
-  bubbles = [];
-  for(let i=0;i<15;i++) createBubble();
-});
+    const phraseEl = document.createElement('span');
+    phraseEl.className = 'phrase';
+    phraseEl.textContent = phraseText;
+
+    const rect = loveBtn.getBoundingClientRect();
+    phraseEl.style.left = rect.left + rect.width / 2 + 'px';
+    phraseEl.style.top = rect.top + rect.height / 2 + 'px';
+    phraseEl.style.transform = 'translate(-50%, -50%)';
+
+    const dir = directions[Math.floor(Math.random() * directions.length)];
+    const duration = 7000; // 7 segundos
+
+    phraseEl.animate([
+      { transform: 'translate(-50%, -50%) translate(0, 0)', opacity: 1 },
+      { transform: `translate(-50%, -50%) translate(${dir.x}px, ${dir.y}px) scale(1.15)`, opacity: 0 }
+    ], {
+      duration: duration,
+      easing: 'ease-out',
+      fill: 'forwards'
+    });
+
+    document.body.appendChild(phraseEl);
+
+    setTimeout(() => {
+      phraseEl.remove();
+    }, duration);
+  });
 </script>
+
 </body>
 </html>
